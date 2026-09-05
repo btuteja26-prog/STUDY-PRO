@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>StudyPro</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h1 class="logo">StudyPro</h1>
+
+        <nav>
+          <a href="#" id="dashboardLink" class="nav-item active"> Dashboard </a>
+
+          <a href="#" class="nav-item" id="subjectsLink"> Subjects </a>
+
+          <a href="#" class="nav-item" id="plannerLink"> Planner </a>
+
+          <a href="#" class="nav-item"> Revision </a>
+
+          <a href="#" class="nav-item"> Study Tools </a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h2 id="greetingText">Good evening!</h2>
+            <p>Let's stay focused.</p>
+          </div>
+
+          <button id="themeButton">Dark Mode</button>
+        </header>
+
+        <!-- Dashboard -->
+        <section class="dashboard page-section" id="dashboardSection">
+          <h2>Dashboard</h2>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Overall Progress</h3>
+              <p class="big-number" id="overallProgress">0%</p>
+            </div>
+
+            <div class="card">
+              <h3>Chapters Completed</h3>
+              <p class="big-number" id="completedChapters">0</p>
+            </div>
+
+            <div class="card">
+              <h3>Chapters Pending</h3>
+              <p class="big-number" id="pendingChapters">0</p>
+            </div>
+
+            <div class="card">
+              <h3>Total Revisions</h3>
+              <p class="big-number" id="totalRevisions">0</p>
+            </div>
+          </div>
+
+          <!-- ===============================
+                OVERALL PROGRESS
+            ================================ -->
+
+          <div class="overall-progress-section">
+            <div class="progress-circle">
+              <svg width="180" height="180" viewBox="0 0 180 180">
+                <!-- Background circle -->
+                <circle
+                  class="progress-circle-bg"
+                  cx="90"
+                  cy="90"
+                  r="70"
+                ></circle>
+
+                <!-- Progress circle -->
+                <circle
+                  class="progress-circle-fill"
+                  id="progressCircle"
+                  cx="90"
+                  cy="90"
+                  r="70"
+                ></circle>
+              </svg>
+
+              <div class="progress-circle-text">
+                <span id="progressCircleText">0%</span>
+              </div>
+            </div>
+
+            <div class="progress-circle-info">
+              <h2>Overall Progress</h2>
+
+              <p>Track your complete syllabus progress at a glance.</p>
+            </div>
+          </div>
+
+          <!-- ===============================
+                SUBJECT-WISE PROGRESS
+            ================================ -->
+
+          <div class="subject-progress-section">
+            <h2>Subject Progress</h2>
+
+            <p class="section-subtitle">Track your progress in each subject.</p>
+
+            <div id="subjectProgressContainer"></div>
+          </div>
+        </section>
+
+        <!-- Subjects -->
+        <section
+          id="subjectsSection"
+          class="page-section"
+          style="display: none"
+        >
+          <h2>Subjects</h2>
+
+          <p>Click on any subject to view and track chapters</p>
+
+          <div id="subjectsContainer"></div>
+
+          <button id="addSubjectBtn" class="add-icon-btn" title="Add Subject">
+            +
+          </button>
+          <!-- Add Subject Modal -->
+          <div id="subjectModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="closeSubjectModal">&times;</span>
+
+              <h2>Add Subject</h2>
+
+              <p>Enter the name of your new subject.</p>
+
+              <input
+                type="text"
+                id="subjectNameInput"
+                placeholder="e.g. Physics"
+              />
+
+              <!-- Symbol Picker -->
+
+              <label class="symbol-picker-label"> Choose a symbol </label>
+
+              <div id="subjectSymbolPicker" class="symbol-picker">
+                <button
+                  type="button"
+                  class="symbol-option selected"
+                  data-symbol="⚛"
+                >
+                  ⚛
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🧪">
+                  🧪
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="📐">
+                  📐
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="💻">
+                  💻
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="📚">
+                  📚
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🧬">
+                  🧬
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🧮">
+                  🧮
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🌐">
+                  🌐
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🔬">
+                  🔬
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="📖">
+                  📖
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="💡">
+                  💡
+                </button>
+
+                <button type="button" class="symbol-option" data-symbol="🎨">
+                  🎨
+                </button>
+              </div>
+
+              <div class="modal-buttons">
+                <button id="cancelSubjectBtn">Cancel</button>
+
+                <button id="saveSubjectBtn">Add Subject</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chapters -->
+        <!-- Chapters -->
+
+        <section
+          id="chaptersSection"
+          class="page-section"
+          style="display: none"
+        >
+          <button id="backToSubjectsBtn" class="back-button">
+            ← Back to Subjects
+          </button>
+
+          <!-- Subject Overview -->
+
+          <div class="subject-overview-card">
+            <div class="subject-overview-header">
+              <div>
+                <h2 id="chaptersTitle">Physics</h2>
+
+                <p id="subjectChapterSubtitle">
+                  0 chapters • Track your progress
+                </p>
+              </div>
+
+              <div class="subject-overview-circle">
+                <svg width="140" height="140" viewBox="0 0 140 140">
+                  <circle
+                    class="subject-circle-bg"
+                    cx="70"
+                    cy="70"
+                    r="52"
+                  ></circle>
+
+                  <circle
+                    class="subject-circle-fill"
+                    id="subjectProgressCircle"
+                    cx="70"
+                    cy="70"
+                    r="52"
+                  ></circle>
+                </svg>
+
+                <div class="subject-circle-text">
+                  <span id="subjectProgressText"> 0% </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="subject-stats">
+              <div class="subject-stat">
+                <span>▣</span>
+
+                <strong id="subjectTotal"> 0 </strong>
+
+                <small>Total</small>
+              </div>
+
+              <div class="subject-stat">
+                <span>✓</span>
+
+                <strong id="subjectCompleted"> 0 </strong>
+
+                <small>Completed</small>
+              </div>
+
+              <div class="subject-stat">
+                <span>↻</span>
+
+                <strong id="subjectRevisions"> 0 </strong>
+
+                <small>Revisions</small>
+              </div>
+
+              <div class="subject-stat">
+                <span>★</span>
+
+                <strong id="subjectAvgConfidence"> 0 </strong>
+
+                <small>Avg. Confidence</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Chapter -->
+
+          <div class="chapter-actions">
+            <button id="addChapterBtn">+ Add Chapter</button>
+          </div>
+
+          <!-- Hard -->
+
+          <div class="chapter-group">
+            <h2>
+              <span class="difficulty-dot hard-dot"></span>
+              Hard Chapters
+              <span id="hardChapterCount">(0)</span>
+            </h2>
+
+            <div id="hardChaptersContainer"></div>
+          </div>
+
+          <!-- Medium -->
+
+          <div class="chapter-group">
+            <h2>
+              <span class="difficulty-dot medium-dot"></span>
+              Medium Chapters
+              <span id="mediumChapterCount">(0)</span>
+            </h2>
+
+            <div id="mediumChaptersContainer"></div>
+          </div>
+
+          <!-- Easy -->
+
+          <div class="chapter-group">
+            <h2>
+              <span class="difficulty-dot easy-dot"></span>
+              Easy Chapters
+              <span id="easyChapterCount">(0)</span>
+            </h2>
+
+            <div id="easyChaptersContainer"></div>
+          </div>
+        </section>
+
+        <!-- Chapter Detail -->
+        <section
+          id="chapterDetailSection"
+          class="page-section"
+          style="display: none"
+        >
+          <button id="backToChaptersBtn">← Back to Chapters</button>
+
+          <h2 id="chapterDetailTitle">Chapter</h2>
+
+          <div id="chapterDetailContainer"></div>
+        </section>
+
+        <!-- Planner -->
+
+        <section id="plannerSection" class="page-section" style="display: none">
+          <div class="planner-header">
+            <div>
+              <h2>Study Planner</h2>
+
+              <p>Plan your study sessions and upcoming exams.</p>
+            </div>
+
+            <button id="addTaskBtn">+ Add Study Task</button>
+          </div>
+
+          <div class="planner-card">
+            <h3>Upcoming Exams</h3>
+
+            <div id="examsContainer">
+              <p>Loading exams...</p>
+            </div>
+          </div>
+
+          <div class="planner-card">
+            <h3>Study Tasks</h3>
+
+            <div id="tasksContainer">
+              <p>Loading study tasks...</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ===============================
+     STUDYPRO CUSTOM MODAL
+    ================================ -->
+
+    <div id="appModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+
+        <h2 id="modalTitle">Confirm Action</h2>
+
+        <p id="modalMessage">Are you sure?</p>
+
+        <div class="modal-buttons">
+          <button id="modalCancelBtn">Cancel</button>
+
+          <button id="modalConfirmBtn">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Chapter Modal -->
+
+    <div id="addChapterModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeAddChapterModal"> &times; </span>
+
+        <h2>Add Chapter</h2>
+
+        <p>Add a new chapter to this subject.</p>
+
+        <label for="chapterNoInput"> Chapter Number </label>
+
+        <input type="number" id="chapterNoInput" min="1" placeholder="e.g. 1" />
+
+        <br /><br />
+
+        <label for="chapterNameInput"> Chapter Name </label>
+
+        <input
+          type="text"
+          id="chapterNameInput"
+          placeholder="e.g. Kinematics"
+        />
+
+        <br /><br />
+
+        <label for="chapterDifficultyInput"> Difficulty </label>
+
+        <select id="chapterDifficultyInput">
+          <option value="Easy">Easy</option>
+
+          <option value="Medium" selected>Medium</option>
+
+          <option value="Hard">Hard</option>
+        </select>
+
+        <div class="modal-buttons">
+          <button id="cancelAddChapterBtn">Cancel</button>
+
+          <button id="saveAddChapterBtn">Add Chapter</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

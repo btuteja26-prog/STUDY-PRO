@@ -1,0 +1,2001 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #ffffff;
+  padding: 25px;
+  border-right: 1px solid #ddd;
+}
+
+.logo {
+  margin-bottom: 40px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #555;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #eeeeee;
+  color: #111;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar h2 {
+  margin-bottom: 5px;
+}
+
+.topbar p {
+  margin-top: 0;
+  color: #666;
+}
+
+#themeButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 25px;
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  flex: 1;
+  border: 1px solid #ddd;
+}
+
+.big-number {
+  font-size: 32px;
+  font-weight: bold;
+}
+body.dark-mode {
+  background: #080d19;
+  color: #ffffff;
+}
+
+body.dark-mode .sidebar {
+  background: #0d1525;
+  border-right-color: #1e293b;
+}
+
+body.dark-mode .nav-item {
+  color: #cccccc;
+}
+
+body.dark-mode .nav-item:hover,
+body.dark-mode .nav-item.active {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+body.dark-mode .topbar p {
+  color: #aaaaaa;
+}
+
+body.dark-mode .card {
+  background: #0f172a;
+  border-color: #243247;
+}
+/* ===============================
+   ADD SUBJECT MODAL
+================================ */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 500px;
+  max-width: 90%;
+
+  background: #ffffff;
+
+  padding: 28px 30px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+  position: relative;
+}
+
+.modal-content h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}
+
+.modal-content p {
+  margin: 0 0 22px 0;
+  color: #666;
+}
+
+.close {
+  position: absolute;
+
+  right: 20px;
+  top: 15px;
+
+  font-size: 28px;
+
+  color: #666;
+
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+#subjectNameInput {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+
+  font-size: 16px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 7px;
+
+  outline: none;
+}
+
+#subjectNameInput:focus {
+  border-color: #555;
+}
+
+.modal-buttons {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.modal-buttons button {
+  padding: 10px 18px;
+
+  border-radius: 7px;
+
+  border: 1px solid #ccc;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+#cancelSubjectBtn {
+  background: white;
+  color: #333;
+}
+
+#saveSubjectBtn {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+#saveSubjectBtn:hover {
+  background: #000;
+}
+
+/* ===============================
+   DARK MODE - SUBJECT MODAL
+================================ */
+
+body.dark-mode .modal-content {
+  background: #111827;
+  color: #ffffff;
+}
+
+body.dark-mode .modal-content p {
+  color: #aaaaaa;
+}
+
+body.dark-mode .close {
+  color: #aaaaaa;
+}
+
+body.dark-mode .close:hover {
+  color: #ffffff;
+}
+
+body.dark-mode #subjectNameInput {
+  background: #0b1220;
+  color: #ffffff;
+  border-color: #334155;
+}
+
+body.dark-mode #subjectNameInput::placeholder {
+  color: #888888;
+}
+
+body.dark-mode #cancelSubjectBtn {
+  background: #2a2a2a;
+  color: #ffffff;
+  border-color: #444444;
+}
+
+body.dark-mode #saveSubjectBtn {
+  background: #ffffff;
+  color: #111111;
+  border-color: #ffffff;
+}
+
+body.dark-mode #saveSubjectBtn:hover {
+  background: #dddddd;
+}
+
+/* ===============================
+   CONFIDENCE STAR RATING
+================================ */
+
+.star-rating {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.star {
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+  color: #cccccc;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.star {
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  color: #d1d5db;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
+.star.selected {
+  color: #f5b301;
+}
+
+.confidence-text {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+body.dark-mode .star {
+  color: #555555;
+}
+
+body.dark-mode .star.selected {
+  color: #f5b301;
+}
+
+body.dark-mode .confidence-text {
+  color: #aaaaaa;
+}
+
+/* ===============================
+   GENERAL CONFIRMATION MODAL
+================================ */
+
+#appModal .modal-content {
+  max-width: 500px;
+}
+
+#modalTitle {
+  margin-bottom: 10px;
+}
+
+#modalMessage {
+  line-height: 1.5;
+}
+
+#modalCancelBtn {
+  background: white;
+  color: #333;
+}
+
+#modalConfirmBtn {
+  background: #222;
+  color: white;
+  border-color: #222;
+}
+
+#modalCancelBtn:hover {
+  background: #eeeeee;
+}
+
+#modalConfirmBtn:hover {
+  background: #000;
+}
+
+/* DARK MODE */
+
+body.dark-mode #appModal .modal-content {
+  background: #111827;
+  color: white;
+}
+
+body.dark-mode #modalCancelBtn {
+  background: #333;
+  color: white;
+  border-color: #555;
+}
+
+body.dark-mode #modalCancelBtn:hover {
+  background: #444;
+}
+
+body.dark-mode #modalConfirmBtn {
+  background: white;
+  color: #111;
+  border-color: white;
+}
+
+body.dark-mode #modalConfirmBtn:hover {
+  background: #dddddd;
+}
+
+#editChapterModal input,
+#editChapterModal select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+#editChapterModal label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+body.dark-mode #editChapterModal input,
+body.dark-mode #editChapterModal select {
+  background: #121212;
+  color: white;
+  border-color: #444;
+}
+
+/* ===============================
+   CIRCULAR PROGRESS
+================================ */
+
+.overall-progress-section {
+  margin-top: 30px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.progress-circle {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.progress-circle svg {
+  width: 180px;
+  height: 180px;
+  transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+  fill: none;
+  stroke: #edf1f5;
+  stroke-width: 12;
+}
+
+.progress-circle-fill {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 12;
+  stroke-linecap: round;
+
+  stroke-dasharray: 439.82;
+  stroke-dashoffset: 439.82;
+
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.progress-circle-text {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle-text span {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.progress-circle-info h2 {
+  margin: 0 0 8px 0;
+}
+
+.progress-circle-info p {
+  margin: 0;
+  color: #666;
+}
+
+/* DARK MODE */
+
+body.dark-mode .overall-progress-section {
+  background: #0f172a;
+  border-color: #243247;
+}
+
+body.dark-mode .progress-circle-bg {
+  stroke: #26354d;
+}
+
+body.dark-mode .progress-circle-info p {
+  color: #aaa;
+}
+
+/* ===============================
+   SUBJECT-WISE PROGRESS
+================================ */
+
+.subject-progress-section {
+  margin-top: 30px;
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 12px;
+
+  padding: 30px;
+}
+
+.subject-progress-section h2 {
+  margin: 0 0 5px 0;
+}
+
+.section-subtitle {
+  margin-top: 0;
+  color: #666;
+}
+
+.subject-progress-row {
+  margin-top: 25px;
+}
+
+.subject-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.subject-progress-bar {
+  width: 100%;
+  height: 10px;
+
+  background: #edf1f5;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.subject-progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
+
+/* Subject progress colors */
+
+.subject-progress-row:nth-child(6n + 1) .subject-progress-fill {
+  background: #2563eb;
+}
+
+.subject-progress-row:nth-child(6n + 2) .subject-progress-fill {
+  background: #16a34a;
+}
+
+.subject-progress-row:nth-child(6n + 3) .subject-progress-fill {
+  background: #7c3aed;
+}
+
+.subject-progress-row:nth-child(6n + 4) .subject-progress-fill {
+  background: #f59e0b;
+}
+
+.subject-progress-row:nth-child(6n + 5) .subject-progress-fill {
+  background: #e11d48;
+}
+
+.subject-progress-row:nth-child(6n) .subject-progress-fill {
+  background: #0891b2;
+}
+
+.subject-progress-percentage {
+  margin-top: 5px;
+
+  font-size: 13px;
+
+  color: #666;
+}
+
+/* DARK MODE */
+
+body.dark-mode .subject-progress-section {
+  background: #0f172a;
+  border-color: #243247;
+}
+
+body.dark-mode .section-subtitle,
+body.dark-mode .subject-progress-percentage {
+  color: #aaa;
+}
+
+body.dark-mode .subject-progress-bar {
+  background: #26354d;
+}
+
+/* ===============================
+   ADD CHAPTER MODAL
+================================ */
+
+#addChapterModal input,
+#addChapterModal select {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  margin-top: 6px;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+#addChapterModal input:focus,
+#addChapterModal select:focus {
+  border-color: #555;
+}
+
+#addChapterModal label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+body.dark-mode #addChapterModal input,
+body.dark-mode #addChapterModal select {
+  background: #0b1220;
+  color: white;
+  border-color: #334155;
+}
+
+/* ===============================
+   SUBJECT CARD ICON BUTTONS
+================================ */
+
+#subjectsContainer .card {
+  position: relative;
+  min-height: 210px;
+}
+
+/* Common icon button */
+
+#subjectsContainer .icon-btn {
+  position: absolute;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Eye - bottom left */
+
+#subjectsContainer .view-btn {
+  left: 30px;
+  bottom: 25px;
+}
+
+/* Pencil - top right */
+
+#subjectsContainer .edit-btn {
+  right: 30px;
+  top: 25px;
+}
+
+/* Delete - bottom right */
+
+#subjectsContainer .delete-btn {
+  right: 30px;
+  bottom: 25px;
+}
+
+/* Hover */
+
+#subjectsContainer .icon-btn:hover {
+  transform: scale(1.08);
+  background: #333;
+}
+
+/* Delete becomes RED */
+
+#subjectsContainer .delete-btn:hover {
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* Dark mode */
+
+body.dark-mode #subjectsContainer .icon-btn {
+  color: #ffffff;
+  border-color: #555;
+}
+
+body.dark-mode #subjectsContainer .icon-btn:hover {
+  background: #333;
+}
+
+body.dark-mode #subjectsContainer .delete-btn:hover {
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* ===============================
+   EYE ICON OPEN / CLOSE
+================================ */
+
+#subjectsContainer .view-btn .eye-open {
+  display: none;
+}
+
+#subjectsContainer .view-btn .eye-closed {
+  display: block;
+}
+
+#subjectsContainer .view-btn:hover .eye-closed {
+  display: none;
+}
+
+#subjectsContainer .view-btn:hover .eye-open {
+  display: block;
+}
+
+#subjectsContainer .view-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* ===============================
+   NEW CHAPTERS PAGE UI
+================================ */
+
+#chaptersSection {
+  padding-bottom: 50px;
+}
+
+/* Back button */
+
+#chaptersSection .back-button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+
+  padding: 8px 12px;
+  margin-bottom: 25px;
+
+  border-radius: 8px;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+#chaptersSection .back-button:hover {
+  background: #f5b301;
+  color: #111827;
+  transform: translateX(-2px);
+}
+
+/* ===============================
+   SUBJECT OVERVIEW
+================================ */
+
+.subject-overview-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 30px;
+}
+
+.subject-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subject-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: #eee;
+  font-size: 25px;
+  margin-bottom: 14px;
+}
+
+.subject-overview-header h2 {
+  margin: 0;
+  font-size: 34px;
+}
+
+#subjectChapterSubtitle {
+  margin-top: 8px;
+  color: #666;
+  font-size: 18px;
+}
+
+/* ===============================
+   SUBJECT PROGRESS CIRCLE
+================================ */
+
+.subject-overview-circle {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.subject-overview-circle svg {
+  width: 140px;
+  height: 140px;
+  transform: rotate(-90deg);
+}
+
+.subject-circle-bg {
+  fill: none;
+  stroke: #edf1f5;
+  stroke-width: 10;
+}
+
+.subject-circle-fill {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 10;
+  stroke-linecap: round;
+
+  stroke-dasharray: 326.73;
+  stroke-dashoffset: 326.73;
+
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.subject-circle-text {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subject-circle-text span {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* ===============================
+   SUBJECT STATS
+================================ */
+
+.subject-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 35px;
+  gap: 20px;
+}
+
+.subject-stat {
+  text-align: center;
+}
+
+.subject-stat span {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.subject-stat strong {
+  display: block;
+  font-size: 28px;
+}
+
+.subject-stat small {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ===============================
+   ADD CHAPTER
+================================ */
+
+.chapter-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   DIFFICULTY GROUP
+================================ */
+
+.chapter-group {
+  margin-bottom: 30px;
+}
+
+.chapter-group h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.difficulty-dot {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.hard-dot {
+  background: #ef4444;
+}
+
+.medium-dot {
+  background: #f59e0b;
+}
+
+.easy-dot {
+  background: #16a34a;
+}
+
+/* CHAPTER ROW */
+.chapter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: white;
+  border: 1px solid #e1e6ed;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  transition: all 0.18s ease;
+}
+
+.chapter-row:hover {
+  transform: translateY(-2px);
+  border-color: #cfd7e3;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+/* Left side */
+
+.chapter-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.chapter-info {
+  min-width: 0;
+}
+
+.chapter-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+}
+
+body.dark-mode .chapter-title {
+  color: #ffffff;
+}
+
+.chapter-completed .chapter-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.chapter-completed {
+  opacity: 0.85;
+}
+
+.chapter-meta {
+  margin-top: 7px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* ===============================
+   CHECKBOX
+================================ */
+
+.chapter-check input {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #2563eb;
+}
+
+/* ===============================
+   DIFFICULTY BADGE
+================================ */
+
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.difficulty-badge.hard {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.difficulty-badge.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.difficulty-badge.easy {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* ===============================
+   STARS
+================================ */
+
+.chapter-stars {
+  margin-left: 12px;
+
+  letter-spacing: 2px;
+
+  color: #f59e0b;
+
+  font-size: 16px;
+}
+
+.chapter-confidence .chapter-stars {
+  margin-left: 0;
+  letter-spacing: normal;
+}
+
+/* ===============================
+   RIGHT SIDE
+================================ */
+
+.chapter-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.revise-btn,
+.chapter-more-btn {
+  border: 1px solid #ddd;
+  background: white;
+  color: #111;
+
+  border-radius: 10px;
+  padding: 9px 14px;
+
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.revise-btn:hover,
+.chapter-more-btn:hover,
+.chapter-more-btn.active {
+  background: #f5b301;
+  color: #111;
+  border-color: #f5b301;
+
+  transform: scale(1.03);
+}
+
+/* ===============================
+   DARK MODE
+================================ */
+
+body.dark-mode .subject-overview-card,
+body.dark-mode .chapter-row {
+  background: #151d2e;
+  border-color: #26354d;
+}
+
+body.dark-mode .subject-icon {
+  background: #1e293b;
+}
+
+body.dark-mode #subjectChapterSubtitle,
+body.dark-mode .subject-stat small,
+body.dark-mode .chapter-meta {
+  color: #aaa;
+}
+
+body.dark-mode .subject-circle-bg {
+  stroke: #26354d;
+}
+
+body.dark-mode .chapter-row:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .revise-btn,
+body.dark-mode .chapter-more-btn {
+  background: #111827;
+  color: #ffffff;
+  border-color: #334155;
+}
+
+body.dark-mode .revise-btn:hover,
+body.dark-mode .chapter-more-btn:hover,
+body.dark-mode .chapter-more-btn.active {
+  background: #f5b301;
+  color: #111827;
+  border-color: #f5b301;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+  .subject-overview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+
+  .subject-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chapter-row {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .chapter-actions-right {
+    flex-direction: column;
+  }
+
+  .inline-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   DELETE ICON
+================================ */
+
+.delete-btn svg,
+.chapter-delete-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.delete-btn,
+.chapter-delete-btn {
+  color: #888;
+}
+
+.delete-btn:hover,
+.chapter-delete-btn:hover {
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.chapter-delete-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.chapter-delete-btn {
+  color: #888;
+  border: 1px solid #444;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.chapter-delete-btn:hover {
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* ===============================
+   ADD SUBJECT ICON
+================================ */
+
+button.add-icon-btn {
+  width: 64px !important;
+  height: 64px !important;
+
+  padding: 0 !important;
+  margin-top: 20px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+
+  background: transparent !important;
+  color: #444 !important;
+
+  font-size: 46px !important;
+  font-weight: 300 !important;
+  line-height: 1 !important;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* LIGHT MODE */
+
+button.add-icon-btn:hover {
+  background: rgba(37, 99, 235, 0.12) !important;
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+
+  transform: scale(1.08);
+
+  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.08);
+}
+
+/* CLICK */
+
+button.add-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* DARK MODE */
+
+body.dark-mode button.add-icon-btn {
+  background: transparent !important;
+  color: #aaa !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode button.add-icon-btn:hover {
+  background: rgba(124, 58, 237, 0.16) !important;
+  color: #a78bfa !important;
+  border-color: #7c3aed !important;
+
+  box-shadow: 0 0 0 5px rgba(124, 58, 237, 0.1);
+}
+
+/* ===============================
+   NEW SUBJECTS PAGE UI
+================================ */
+
+/* Subject grid */
+
+#subjectsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+
+  margin-top: 35px;
+}
+
+/* Subject card */
+
+#subjectsContainer .subject-card {
+  position: relative;
+
+  min-height: 225px;
+  padding: 26px;
+
+  background: #ffffff;
+  border: 1px solid #d9e0e8;
+  border-radius: 16px;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Hover */
+
+#subjectsContainer .subject-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #cbd5e1;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   TOP AREA
+================================ */
+
+.subject-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Subject icon */
+
+.subject-icon-large {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #eee;
+  font-size: 27px;
+}
+
+/* ===============================
+   CIRCULAR PROGRESS
+================================ */
+
+.subject-mini-progress {
+  width: 88px;
+  height: 88px;
+
+  position: relative;
+  flex-shrink: 0;
+}
+
+.subject-mini-progress svg {
+  width: 88px;
+  height: 88px;
+
+  transform: rotate(-90deg);
+}
+
+.mini-progress-bg {
+  fill: none;
+
+  stroke: #edf1f5;
+  stroke-width: 9;
+}
+
+.mini-progress-fill {
+  fill: none;
+
+  stroke: var(--progress-color);
+
+  stroke-width: 9;
+  stroke-linecap: round;
+
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.subject-mini-progress span {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  font-weight: bold;
+
+  color: #111827;
+}
+
+/* ===============================
+   SUBJECT NAME
+================================ */
+
+.subject-card-title {
+  margin: 17px 0 7px;
+
+  font-size: 23px;
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  color: #111827;
+}
+
+/* Chapter count */
+
+.subject-card-count {
+  margin: 0;
+
+  font-size: 17px;
+
+  color: #64748b;
+}
+
+/* ===============================
+   PROGRESS BAR
+================================ */
+
+.subject-card-progress {
+  width: calc(100% - 28px);
+
+  height: 10px;
+
+  margin-top: 22px;
+
+  background: #edf1f5;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.subject-card-progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+
+  transition: width 0.6s ease;
+}
+
+/* ===============================
+   VIEW ARROW
+================================ */
+
+.subject-view-arrow {
+  position: absolute;
+
+  right: 26px;
+  bottom: 22px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f5f9;
+  color: #334155;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.subject-view-arrow:hover {
+  background: #2563eb;
+  color: white;
+
+  transform: scale(1.08);
+}
+
+/* ===============================
+   EDIT BUTTON
+================================ */
+
+#subjectsContainer .subject-card .edit-btn {
+  right: 18px;
+  top: 18px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  width: 32px;
+  height: 32px;
+
+  font-size: 16px;
+}
+
+#subjectsContainer .subject-card:hover .edit-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===============================
+   DELETE BUTTON
+================================ */
+
+#subjectsContainer .subject-card .delete-btn {
+  right: 18px;
+  bottom: 18px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  width: 32px;
+  height: 32px;
+}
+
+#subjectsContainer .subject-card:hover .delete-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===============================
+   DARK MODE
+================================ */
+
+body.dark-mode #subjectsContainer .subject-card {
+  background: #0f172a;
+  border-color: #243247;
+}
+
+body.dark-mode #subjectsContainer .subject-card:hover {
+  border-color: #444;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .subject-icon-large {
+  background: #1e293b;
+}
+
+body.dark-mode .subject-card-title {
+  color: #ffffff;
+}
+
+body.dark-mode .subject-card-count {
+  color: #aaa;
+}
+
+body.dark-mode .mini-progress-bg {
+  stroke: #26354d;
+}
+
+body.dark-mode .subject-mini-progress span {
+  color: #ffffff;
+}
+
+body.dark-mode .subject-card-progress {
+  background: #26354d;
+}
+
+body.dark-mode .subject-view-arrow {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode .subject-view-arrow:hover {
+  background: #7c3aed;
+  color: white;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+  #subjectsContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  #subjectsContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   SUBJECT SYMBOL PICKER
+================================ */
+
+.symbol-picker-label {
+  display: block;
+
+  margin-top: 18px;
+  margin-bottom: 10px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Symbol grid */
+
+.symbol-picker {
+  display: grid;
+
+  grid-template-columns: repeat(6, 1fr);
+
+  gap: 10px;
+}
+
+/* Symbol button */
+
+.symbol-option {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #d8dee8;
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Hover */
+
+.symbol-option:hover {
+  transform: translateY(-2px);
+
+  border-color: #2563eb;
+
+  background: #eff6ff;
+
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
+}
+
+/* Selected */
+
+.symbol-option.selected {
+  border: 2px solid #2563eb;
+
+  background: #dbeafe;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Dark mode */
+
+body.dark-mode .symbol-picker-label {
+  color: #ffffff;
+}
+
+body.dark-mode .symbol-option {
+  border-color: #334155;
+
+  background: #1e293b;
+}
+
+body.dark-mode .symbol-option:hover {
+  border-color: #7c3aed;
+
+  background: rgba(124, 58, 237, 0.12);
+
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.15);
+}
+
+body.dark-mode .symbol-option.selected {
+  border-color: #7c3aed;
+
+  background: rgba(124, 58, 237, 0.2);
+
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  .symbol-picker {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===============================
+   CLICKABLE SUBJECT CARD
+================================ */
+
+#subjectsContainer .subject-card {
+  cursor: pointer;
+}
+
+/* Hover */
+
+#subjectsContainer .subject-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Click pop */
+
+#subjectsContainer .subject-card-pop {
+  transform: scale(1.025) translateY(-4px);
+
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.14);
+}
+
+/* Dark mode */
+
+body.dark-mode #subjectsContainer .subject-card-pop {
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* ===============================
+   COMPLETED CHAPTER
+   =============================== */
+
+.chapter-title {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.chapter-meta {
+  color: #9ca3af;
+}
+
+.chapter-completed .chapter-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.chapter-completed .chapter-meta {
+  color: #6b7280;
+}
+
+/* ===============================
+   CHAPTER CONFIDENCE
+================================ */
+
+.chapter-confidence {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 12px;
+}
+
+.chapter-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.confidence-star {
+  color: #26354d;
+  font-size: 18px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.confidence-star.selected {
+  color: #f59e0b;
+}
+
+.confidence-star:hover {
+  transform: scale(1.15);
+}
+
+.chapter-confidence-label {
+  min-height: 17px;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* DARK MODE */
+
+body.dark-mode .confidence-star {
+  color: #26354d;
+}
+
+body.dark-mode .confidence-star.selected {
+  color: #f59e0b;
+}
+
+body.dark-mode .chapter-confidence-label {
+  color: #94a3b8;
+}
+
+/* ===============================
+   INLINE CHAPTER DETAILS
+================================ */
+
+.inline-chapter-details {
+  width: 100%;
+  flex-basis: 100%;
+
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+
+  margin-top: 0;
+  padding-top: 0;
+
+  border-top: 1px solid transparent;
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.25s ease,
+    margin-top 0.4s ease,
+    padding-top 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.inline-chapter-details.open {
+  max-height: 300px;
+
+  opacity: 1;
+
+  margin-top: 18px;
+  padding-top: 18px;
+
+  border-top-color: #e5e7eb;
+}
+
+.inline-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.inline-detail-item {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.inline-detail-item span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.inline-detail-item strong {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+}
+
+/* ===============================
+   DARK MODE
+================================ */
+
+body.dark-mode .inline-chapter-details.open {
+  border-top-color: #26354d;
+}
+
+body.dark-mode .inline-detail-item {
+  background: #1e293b;
+}
+
+body.dark-mode .inline-detail-item span {
+  color: #94a3b8;
+}
+
+body.dark-mode .inline-detail-item strong {
+  color: #ffffff;
+}
+
+/* INLINE CONFIDENCE */
+
+.inline-confidence-stars {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.inline-confidence-star {
+  color: #334155;
+  font-size: 22px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.inline-confidence-star.selected,
+.inline-confidence-star.hovered {
+  color: #f5b301;
+}
+
+.inline-confidence-star:hover {
+  transform: scale(1.12);
+}
+
+.inline-confidence-value {
+  display: block;
+  margin-top: 4px;
+}
+
+.inline-confidence-label {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+}
+
+/* MAIN CONFIDENCE */
+
+.confidence-star {
+  color: #334155;
+  cursor: pointer;
+}
+
+.confidence-star.selected,
+.confidence-star.hovered {
+  color: #f5b301;
+}
+
+/* REVISION SUCCESS */
+
+.revise-btn.revision-success {
+  background: #f5b301;
+  color: #111827;
+  border-color: #f5b301;
+}
